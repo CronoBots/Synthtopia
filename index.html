@@ -15,6 +15,7 @@
       margin: 20px;
       background-color: #000000;
       color: #ffffff;
+      font-size: 16px;
     }
 
     h1, h2, h3, h4 {
@@ -141,7 +142,30 @@
       font-size: 1.8em;
     }
 
+    #searchInput {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 8px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+    }
+
+    /* Responsive styles */
     @media screen and (max-width: 600px) {
+      body {
+        font-size: 14px;
+      }
+
+      h1, h2, h3, h4 {
+        font-size: 1em;
+      }
+
+      h1 {
+        font-size: 1.1em;
+      }
+
       .collection-header {
         flex-wrap: nowrap;
         align-items: center;
@@ -152,29 +176,24 @@
         height: 90px;
       }
 
-      .collection h1 {
-        font-size: 1.2em;
+      .collection h1,
+      .title-container h1 {
+        font-size: 1em;
         line-height: 1.3;
       }
 
       .toggle-btn {
-        font-size: 14px;
+        font-size: 12px;
       }
 
       .footer .footer-content {
         flex-direction: column;
         gap: 5px;
       }
-    }
 
-    #searchInput {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 8px;
-      margin-bottom: 10px;
-      border-radius: 8px;
-      border: none;
-      font-size: 16px;
+      #searchInput {
+        font-size: 14px;
+      }
     }
   </style>
 
@@ -205,13 +224,13 @@
 </head>
 <body>
 
-  <!-- Vidéo centrée, hauteur auto, largeur max 900px -->
+  <!-- Vidéo centrée -->
   <video class="header-image" autoplay muted loop playsinline>
     <source src="https://cdn.prod.website-files.com/6447e57289e803cd88241d94/644a991d3f5d7223f27d5dce_35_NO_super-transcode.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
-  <!-- Main content centered -->
+  <!-- Main content -->
   <div class="main-content">
 
     <h1>COLLECTIONS</h1>
@@ -228,9 +247,9 @@
       <div id="collection-0" class="hidden">
         <h3>OWNERS: 0</h3>
         <ul>
-          <li> •
-          <li> •
-          <li> •
+          <li> •</li>
+          <li> •</li>
+          <li> •</li>
         </ul>
       </div>
     </div>
@@ -247,9 +266,9 @@
       <div id="collection-1" class="hidden">
         <h3>OWNERS: 0</h3>
         <ul>
-          <li> •
-          <li> •
-          <li> •
+          <li> •</li>
+          <li> •</li>
+          <li> •</li>
         </ul>
       </div>
     </div>
@@ -266,9 +285,9 @@
       <div id="collection-2" class="hidden">
         <h3>OWNERS: 0</h3>
         <ul>
-          <li> •
-          <li> •
-          <li> •
+          <li> •</li>
+          <li> •</li>
+          <li> •</li>
         </ul>
       </div>
     </div>
@@ -280,9 +299,9 @@
       <h2>TOTAL OWNERS: 0</h2>
       <input type="text" id="searchInput" placeholder="Search owner...">
       <ul id="global-owners">
-        <li> •
-        <li> •
-        <li> •
+        <li> •</li>
+        <li> •</li>
+        <li> •</li>
       </ul>
     </div>
 
