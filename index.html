@@ -12,7 +12,7 @@
     body {
       font-family: 'Druk Wide', sans-serif;
       line-height: 1.6;
-      margin: 0;
+      margin: 20px;
       background-color: #000000;
       color: #ffffff;
     }
@@ -27,21 +27,6 @@
       margin: 0;
       padding: 0;
       font-size: 1.5em;
-    }
-
-    .header-image {
-      width: 100vw;
-      height: 400px;
-      object-fit: cover;
-      display: block;
-      margin: 0;
-      border-radius: 0;
-    }
-
-    .main-content {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px;
     }
 
     ul {
@@ -87,6 +72,15 @@
 
     .hidden {
       display: none;
+    }
+
+    .header-image {
+      display: block;
+      margin: 0 auto 20px auto;
+      width: 100%;
+      max-width: 900px;
+      height: auto;
+      border-radius: 10px;
     }
 
     .collection-header {
@@ -211,7 +205,7 @@
 </head>
 <body>
 
-  <!-- Full width video banner -->
+  <!-- Vidéo centrée, hauteur auto, largeur max 900px -->
   <video class="header-image" autoplay muted loop playsinline>
     <source src="https://cdn.prod.website-files.com/6447e57289e803cd88241d94/644a991d3f5d7223f27d5dce_35_NO_super-transcode.mp4" type="video/mp4">
     Your browser does not support the video tag.
