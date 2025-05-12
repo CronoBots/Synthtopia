@@ -12,7 +12,7 @@
     body {
       font-family: 'Druk Wide', sans-serif;
       line-height: 1.6;
-      margin: 20px;
+      margin: 0;
       background-color: #000000;
       color: #ffffff;
     }
@@ -27,6 +27,21 @@
       margin: 0;
       padding: 0;
       font-size: 1.5em;
+    }
+
+    .header-image {
+      width: 100vw;
+      height: 400px;
+      object-fit: cover;
+      display: block;
+      margin: 0;
+      border-radius: 0;
+    }
+
+    .main-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
     }
 
     ul {
@@ -72,16 +87,6 @@
 
     .hidden {
       display: none;
-    }
-
-    .header-image {
-      display: block;
-      margin: 0 auto 20px auto;
-      width: 100%;
-      max-width: 900px;
-      height: 400px;
-      object-fit: cover;
-      border-radius: 10px;
     }
 
     .collection-header {
@@ -206,87 +211,92 @@
 </head>
 <body>
 
+  <!-- Full width video banner -->
   <video class="header-image" autoplay muted loop playsinline>
     <source src="https://cdn.prod.website-files.com/6447e57289e803cd88241d94/644a991d3f5d7223f27d5dce_35_NO_super-transcode.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
-  <h1>COLLECTIONS</h1>
+  <!-- Main content centered -->
+  <div class="main-content">
 
-  <!-- 1. THE SYNTHETIX -->
-  <div class="collection">
-    <div class="collection-header">
-      <img src="https://media.nft.crypto.com/b39bba6e-dd46-4cf4-a66a-00e526ce5903/original.gif" alt="SYNTHTOPIA: THE SYNTHETIX (PFP DROP)" class="collection-image">
-      <div class="title-container">
-        <h1>SYNTHTOPIA: THE SYNTHETIX (PFP DROP)</h1>
-        <span class="toggle-btn" data-section-id="collection-0">SHOW</span>
+    <h1>COLLECTIONS</h1>
+
+    <!-- 1. THE SYNTHETIX -->
+    <div class="collection">
+      <div class="collection-header">
+        <img src="https://media.nft.crypto.com/b39bba6e-dd46-4cf4-a66a-00e526ce5903/original.gif" alt="SYNTHTOPIA: THE SYNTHETIX (PFP DROP)" class="collection-image">
+        <div class="title-container">
+          <h1>SYNTHTOPIA: THE SYNTHETIX (PFP DROP)</h1>
+          <span class="toggle-btn" data-section-id="collection-0">SHOW</span>
+        </div>
+      </div>
+      <div id="collection-0" class="hidden">
+        <h3>OWNERS: 0</h3>
+        <ul>
+          <li> • <a href="https://crypto.com/nft/profile/tohmee110" target="_blank">tohmee110</a> : 32 Cryptonauts</li>
+          <li> • 
+          <li> • 
+        </ul>
       </div>
     </div>
-    <div id="collection-0" class="hidden">
-      <h3>OWNERS: 0</h3>
-      <ul>
-        <li> • <a href="https://crypto.com/nft/profile/tohmee110" target="_blank">tohmee110</a> : 32 Cryptonauts</li>
-        <li> • 
-        <li> • 
-      </ul>
-    </div>
-  </div>
 
-  <!-- 2. THE LEGENDS -->
-  <div class="collection">
-    <div class="collection-header">
-      <img src="https://media.nft.crypto.com/bdd01a6f-564b-4fde-9e84-436c049362b7/original.gif" alt="SYNTHTOPIA: THE LEGENDS (PFP DROP)" class="collection-image">
-      <div class="title-container">
-        <h1>SYNTHTOPIA: THE LEGENDS (PFP DROP)</h1>
-        <span class="toggle-btn" data-section-id="collection-1">SHOW</span>
+    <!-- 2. THE LEGENDS -->
+    <div class="collection">
+      <div class="collection-header">
+        <img src="https://media.nft.crypto.com/bdd01a6f-564b-4fde-9e84-436c049362b7/original.gif" alt="SYNTHTOPIA: THE LEGENDS (PFP DROP)" class="collection-image">
+        <div class="title-container">
+          <h1>SYNTHTOPIA: THE LEGENDS (PFP DROP)</h1>
+          <span class="toggle-btn" data-section-id="collection-1">SHOW</span>
+        </div>
+      </div>
+      <div id="collection-1" class="hidden">
+        <h3>OWNERS: 73</h3>
+        <ul>
+          <li> • <a href="https://crypto.com/nft/profile/noleaster" target="_blank">noleaster</a> : 17 Cryptonauts</li>
+          <li> • <a href="https://crypto.com/nft/profile/amondias83" target="_blank">amondias83</a> : 13 Cryptonauts</li>
+          <li> • <a href="https://crypto.com/nft/profile/ethorne77" target="_blank">ethorne77</a> : 13 Cryptonauts</li>
+        </ul>
       </div>
     </div>
-    <div id="collection-1" class="hidden">
-      <h3>OWNERS: 73</h3>
-      <ul>
-        <li> • <a href="https://crypto.com/nft/profile/noleaster" target="_blank">noleaster</a> : 17 Cryptonauts</li>
-        <li> • <a href="https://crypto.com/nft/profile/amondias83" target="_blank">amondias83</a> : 13 Cryptonauts</li>
-        <li> • <a href="https://crypto.com/nft/profile/ethorne77" target="_blank">ethorne77</a> : 13 Cryptonauts</li>
-      </ul>
-    </div>
-  </div>
 
-  <!-- 3. SYNTHTOPIA -->
-  <div class="collection">
-    <div class="collection-header">
-      <img src="https://media.nft.crypto.com/395953dd-72fe-49ba-acb0-f638166b87ae/original.jpg?d=lg-logo" alt="SYNTHTOPIA" class="collection-image">
-      <div class="title-container">
-        <h1>SYNTHTOPIA</h1>
-        <span class="toggle-btn" data-section-id="collection-2">SHOW</span>
+    <!-- 3. SYNTHTOPIA -->
+    <div class="collection">
+      <div class="collection-header">
+        <img src="https://media.nft.crypto.com/395953dd-72fe-49ba-acb0-f638166b87ae/original.jpg?d=lg-logo" alt="SYNTHTOPIA" class="collection-image">
+        <div class="title-container">
+          <h1>SYNTHTOPIA</h1>
+          <span class="toggle-btn" data-section-id="collection-2">SHOW</span>
+        </div>
+      </div>
+      <div id="collection-2" class="hidden">
+        <h3>OWNERS: 108</h3>
+        <ul>
+          <li> • <a href="https://crypto.com/nft/profile/onmywayup1" target="_blank">onmywayup1</a> : 47 Cryptonauts</li>
+          <li> • <a href="https://crypto.com/nft/profile/mikezx1200" target="_blank">mikezx1200</a> : 23 Cryptonauts</li>
+          <li> • <a href="https://crypto.com/nft/profile/wisdomskingdom91" target="_blank">wisdomskingdom91</a> : 14 Cryptonauts</li>
+        </ul>
       </div>
     </div>
-    <div id="collection-2" class="hidden">
-      <h3>OWNERS: 108</h3>
-      <ul>
-        <li> • <a href="https://crypto.com/nft/profile/onmywayup1" target="_blank">onmywayup1</a> : 47 Cryptonauts</li>
-        <li> • <a href="https://crypto.com/nft/profile/mikezx1200" target="_blank">mikezx1200</a> : 23 Cryptonauts</li>
-        <li> • <a href="https://crypto.com/nft/profile/wisdomskingdom91" target="_blank">wisdomskingdom91</a> : 14 Cryptonauts</li>
+
+    <!-- SUMMARY -->
+    <div class="spacer"></div>
+    <h1>SYNTHTOPIA SUMMARY</h1>
+    <div class="summary">
+      <h2>TOTAL OWNERS: 623</h2>
+      <input type="text" id="searchInput" placeholder="Search owner...">
+      <ul id="global-owners">
+        <li> • <a href="https://crypto.com/nft/profile/onmywayup1" target="_blank">onmywayup1</a> : 79 Cryptonauts</li>
+        <li> • <a href="https://crypto.com/nft/profile/ethorne77" target="_blank">ethorne77</a> : 43 Cryptonauts</li>
+        <li> • <a href="https://crypto.com/nft/profile/jamus0" target="_blank">jamus0</a> : 36 Cryptonauts</li>
       </ul>
     </div>
-  </div>
 
-  <!-- SUMMARY -->
-  <div class="spacer"></div>
-  <h1>SYNTHTOPIA SUMMARY</h1>
-  <div class="summary">
-    <h2>TOTAL OWNERS: 623</h2>
-    <input type="text" id="searchInput" placeholder="Search owner...">
-    <ul id="global-owners">
-      <li> • <a href="https://crypto.com/nft/profile/onmywayup1" target="_blank">onmywayup1</a> : 79 Cryptonauts</li>
-      <li> • <a href="https://crypto.com/nft/profile/ethorne77" target="_blank">ethorne77</a> : 43 Cryptonauts</li>
-      <li> • <a href="https://crypto.com/nft/profile/jamus0" target="_blank">jamus0</a> : 36 Cryptonauts</li>
-    </ul>
-  </div>
-
-  <div class="footer">
-    <div class="footer-content">
-      <div>CRONOBOTS | CRONOS DEVELOPMENT</div>
-      <img src="Footer.png" alt="Cronode Footer Logo" />
+    <div class="footer">
+      <div class="footer-content">
+        <div>CRONOBOTS | CRONOS DEVELOPMENT</div>
+        <img src="Footer.png" alt="Cronode Footer Logo" />
+      </div>
     </div>
   </div>
 </body>
