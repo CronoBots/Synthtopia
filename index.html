@@ -48,7 +48,9 @@
     const walletAddress = "0x9829e44fd04f3788F27096875Df0D2772173Ab3d";
     const apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjQ2Njc5NWY5LTk1NDMtNDFiNS05YTAyLWIyYjNmODA5YzgwYSIsIm9yZ0lkIjoiNDUwMDA4IiwidXNlcklkIjoiNDYzMDE3IiwidHlwZUlkIjoiMDEwNjRhOWEtOGNmNC00MGMyLTk5ZTAtY2UxZTc2ZWE4YjFhIiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDg1NTc3NTMsImV4cCI6NDkwNDMxNzc1M30.9wv7zBh-q0L4YpGISiaNuHOANVj7j59PzGKGayaNqr4";
 
-    fetch(`https://deep-index.moralis.io/api/v2.2/${walletAddress}/nft?chain=cronos&format=decimal`, {
+    const url = `https://corsproxy.io/?https://deep-index.moralis.io/api/v2.2/${walletAddress}/nft?chain=cronos&format=decimal`;
+
+    fetch(url, {
       headers: {
         "accept": "application/json",
         "X-API-Key": apiKey
