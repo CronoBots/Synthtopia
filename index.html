@@ -1,288 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>Synthtopia Leaderboards</title>
-
-  <!-- Druk Wide via Fontshare -->
-  <link href="https://api.fontshare.com/v2/css?f[]=druk-wide@700&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <title>Mes NFTs Cronos</title>
   <style>
     body {
-      font-family: 'Druk Wide', 'Impact', 'Arial Black', sans-serif;
-      line-height: 1.6;
-      margin: 20px;
-      background-color: #000000;
-      color: #ffffff;
-      font-size: 16px;
+      background-color: #0f0f0f;
+      color: #f0f0f0;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 20px;
     }
-
-    h1, h2, h3, h4 {
-      color: #ffffff;
-      text-transform: uppercase;
-      font-weight: 700;
-      margin: 0;
-      padding: 0;
-    }
-
-    h1.main-title,
-    h1.section-title {
-      font-size: 1em;
-      margin-bottom: 0px;
-      text-align: left;
-    }
-
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    li {
-      margin-bottom: 5px;
-    }
-
-    a {
-      color: #66b0ff;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .collection, .summary {
-      margin-bottom: 10px;
-      padding: 15px;
-      background-color: #1a1a1a;
-      border-radius: 15px;
-      box-shadow: 0 2px 4px rgba(255,255,255,0.1);
-    }
-
-    .toggle-btn {
-      cursor: pointer;
-      color: #66b0ff;
-      padding: 5px 10px;
-      display: inline-block;
-      pointer-events: auto;
-      margin-top: 8px;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    .toggle-btn:hover {
-      text-decoration: underline;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .header-image {
-      display: block;
-      margin: 0 auto 20px auto;
-      width: 100%;
-      max-width: 900px;
-      height: auto;
-      border-radius: 10px;
-    }
-
-    .collection-header {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      flex-wrap: nowrap;
-    }
-
-    .title-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      flex-grow: 1;
+    h1 {
       text-align: center;
+      color: #66fcf1;
     }
-
-    .title-container h1 {
-      font-size: 1.3em;
-    }
-
-    .collection-image {
-      width: 110px;
-      height: 110px;
-      border-radius: 15px;
-      flex-shrink: 0;
-    }
-
-    .spacer {
-      margin-top: 30px;
-    }
-
-    .footer {
-      width: 100%;
-      margin-top: 40px;
-      text-align: center;
-      padding-bottom: 20px;
-    }
-
-    .footer .footer-content {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 12px;
-      color: #ffffff;
+    .nft-container {
+      display: flex;
       flex-wrap: wrap;
+      gap: 20px;
       justify-content: center;
     }
-
-    .footer img {
-      width: 35px;
-      height: 35px;
+    .nft {
+      background: #1c1c1c;
+      border: 1px solid #333;
+      border-radius: 10px;
+      padding: 15px;
+      width: 250px;
+      box-shadow: 0 0 10px #000;
     }
-
-    #searchInput {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 8px;
-      margin-bottom: 10px;
+    .nft img {
+      max-width: 100%;
       border-radius: 8px;
-      border: none;
-      font-size: 16px;
+      margin-top: 10px;
     }
-
-    /* Responsive */
-    @media screen and (max-width: 600px) {
-      body {
-        font-size: 14px;
-      }
-
-      h1.main-title,
-      h1.section-title {
-        font-size: 1.5em;
-      }
-
-      .collection-image {
-        width: 90px;
-        height: 90px;
-      }
-
-      .title-container h1 {
-        font-size: 1em;
-      }
-
-      .toggle-btn {
-        font-size: 12px;
-      }
-
-      .footer .footer-content {
-        flex-direction: column;
-        gap: 5px;
-      }
-
-      #searchInput {
-        font-size: 14px;
-      }
+    .error {
+      color: red;
+      text-align: center;
     }
   </style>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const toggleButtons = document.querySelectorAll('.toggle-btn');
-      toggleButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          const sectionId = button.getAttribute('data-section-id');
-          const section = document.getElementById(sectionId);
-          const isHidden = section.classList.contains('hidden');
-          section.classList.toggle('hidden', !isHidden);
-          button.innerText = isHidden ? 'HIDE' : 'SHOW';
-        });
-      });
-
-      const searchInput = document.getElementById('searchInput');
-      const listItems = document.querySelectorAll('#global-owners li');
-      searchInput.addEventListener('input', () => {
-        const filter = searchInput.value.toLowerCase();
-        listItems.forEach(item => {
-          const text = item.textContent.toLowerCase();
-          item.style.display = text.includes(filter) ? '' : 'none';
-        });
-      });
-    });
-  </script>
 </head>
 <body>
 
-  <video class="header-image" autoplay muted loop playsinline>
-    <source src="https://cdn.prod.website-files.com/6447e57289e803cd88241d94/644a991d3f5d7223f27d5dce_35_NO_super-transcode.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+  <h1>NFTs du Wallet Cronos</h1>
+  <div id="nft-list" class="nft-container">Chargement...</div>
 
-  <div class="main-content">
-    <h1 class="main-title">COLLECTIONS</h1>
+  <script>
+    const walletAddress = "0x9829e44fd04f3788F27096875Df0D2772173Ab3d";
+    const apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjQ2Njc5NWY5LTk1NDMtNDFiNS05YTAyLWIyYjNmODA5YzgwYSIsIm9yZ0lkIjoiNDUwMDA4IiwidXNlcklkIjoiNDYzMDE3IiwidHlwZUlkIjoiMDEwNjRhOWEtOGNmNC00MGMyLTk5ZTAtY2UxZTc2ZWE4YjFhIiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDg1NTc3NTMsImV4cCI6NDkwNDMxNzc1M30.9wv7zBh-q0L4YpGISiaNuHOANVj7j59PzGKGayaNqr4";
 
-    <!-- Collection 1 -->
-    <div class="collection">
-      <div class="collection-header">
-        <img src="https://media.nft.crypto.com/b39bba6e-dd46-4cf4-a66a-00e526ce5903/original.gif" alt="Synthetix" class="collection-image">
-        <div class="title-container">
-          <h1>SYNTHTOPIA: THE SYNTHETIX (PFP DROP)</h1>
-          <span class="toggle-btn" data-section-id="collection-0">SHOW</span>
-        </div>
-      </div>
-      <div id="collection-0" class="hidden">
-        <h3>OWNERS: 0</h3>
-        <ul><li> •</li><li> •</li><li> •</li></ul>
-      </div>
-    </div>
+    fetch(`https://deep-index.moralis.io/api/v2.2/${walletAddress}/nft?chain=cronos&format=decimal`, {
+      headers: {
+        "accept": "application/json",
+        "X-API-Key": apiKey
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      const container = document.getElementById("nft-list");
+      container.innerHTML = "";
 
-    <!-- Collection 2 -->
-    <div class="collection">
-      <div class="collection-header">
-        <img src="https://media.nft.crypto.com/bdd01a6f-564b-4fde-9e84-436c049362b7/original.gif" alt="The Legends" class="collection-image">
-        <div class="title-container">
-          <h1>SYNTHTOPIA: THE LEGENDS (PFP DROP)</h1>
-          <span class="toggle-btn" data-section-id="collection-1">SHOW</span>
-        </div>
-      </div>
-      <div id="collection-1" class="hidden">
-        <h3>OWNERS: 0</h3>
-        <ul><li> •</li><li> •</li><li> •</li></ul>
-      </div>
-    </div>
+      if (!data.result || data.result.length === 0) {
+        container.innerHTML = "<p class='error'>Aucun NFT trouvé sur cette adresse.</p>";
+        return;
+      }
 
-    <!-- Collection 3 -->
-    <div class="collection">
-      <div class="collection-header">
-        <img src="https://media.nft.crypto.com/503e7c87-0821-4881-80ba-c49fa93971c0/original.gif" alt="Synthtopia" class="collection-image">
-        <div class="title-container">
-          <h1>SYNTHTOPIA</h1>
-          <span class="toggle-btn" data-section-id="collection-2">SHOW</span>
-        </div>
-      </div>
-      <div id="collection-2" class="hidden">
-        <h3>OWNERS: 0</h3>
-        <ul><li> •</li><li> •</li><li> •</li></ul>
-      </div>
-    </div>
+      data.result.forEach(nft => {
+        let metadata = {};
+        try {
+          metadata = JSON.parse(nft.metadata);
+        } catch {}
 
-    <!-- Summary -->
-    <div class="spacer"></div>
-    <h1 class="section-title">SYNTHTOPIA SUMMARY</h1>
-    <div class="summary">
-      <h2>TOTAL OWNERS: 0</h2>
-      <input type="text" id="searchInput" placeholder="Search owner...">
-      <ul id="global-owners">
-        <li> •</li><li> •</li><li> •</li>
-      </ul>
-    </div>
+        const imageRaw = metadata.image || "";
+        const imageUrl = imageRaw.startsWith("ipfs://")
+          ? imageRaw.replace("ipfs://", "https://ipfs.io/ipfs/")
+          : imageRaw;
 
-    <!-- Footer -->
-    <div class="footer">
-      <div class="footer-content">
-        <div>CRONOBOTS | CRONOS DEVELOPMENT</div>
-        <img src="Footer.png" alt="Cronode Footer Logo" />
-      </div>
-    </div>
-  </div>
+        const div = document.createElement("div");
+        div.className = "nft";
+        div.innerHTML = `
+          <h3>${nft.name || "Nom inconnu"}</h3>
+          <p><strong>Collection :</strong> ${nft.symbol}</p>
+          <p><strong>Token ID :</strong> ${nft.token_id}</p>
+          ${imageUrl ? `<img src="${imageUrl}" alt="Image NFT">` : "<p>Pas d’image</p>"}
+        `;
+        container.appendChild(div);
+      });
+    })
+    .catch(error => {
+      document.getElementById("nft-list").innerHTML =
+        "<p class='error'>Erreur lors du chargement des NFTs.</p>";
+      console.error(error);
+    });
+  </script>
+
 </body>
 </html>
