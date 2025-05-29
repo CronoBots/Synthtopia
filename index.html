@@ -86,17 +86,21 @@
         const collectionQuery = `
             query GetCollectionAssets($collectionId: ID!, $first: Int!, $skip: Int!) {
                 public {
-                    collectionAssets(collectionId: $collectionId, first: $first, skip: $skip) {
+                    collection(id: $collectionId) {
                         id
                         name
-                        owner {
-                            username
-                            walletAddress
-                        }
-                        collection {
+                        assets(first: $first, skip: $skip) {
+                            id
                             name
+                            owner {
+                                username
+                                walletAddress
+                            }
+                            collection {
+                                name
+                            }
+                            createdAt
                         }
-                        createdAt
                     }
                 }
             }
@@ -131,7 +135,7 @@
                         throw new Error(`GraphQL Error: ${result.errors.map(e => e.message).join(', ')}`);
                     }
 
-                    const assets = result.data?.public?.collectionAssets || [];
+                    const assets = result.data?.public?.collection?.assets || [];
                     allAssets = [...allAssets, ...assets];
                     skip += first;
                     hasMore = assets.length === first;
