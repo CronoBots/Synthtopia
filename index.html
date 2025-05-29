@@ -82,36 +82,32 @@
         const graphqlEndpoint = "https://crypto.com/nft-api/graphql";
         const collectionId = "3b7ac3ae9f76d8043abcb12c48225ba2"; // Collection ID
 
-        // GraphQL query for collection assets
+        // GraphQL query to fetch NFTs directly from a collection
         const collectionQuery = `
-            query GetCollectionAssets($collectionId: ID!, $first: Int!, $skip: Int!) {
+            query GetCollectionNFTs($collectionId: ID!, $first: Int!, $skip: Int!) {
                 public {
-                    collection(id: $collectionId) {
+                    collectionNfts(collectionId: $collectionId, first: $first, skip: $skip) {
                         id
                         name
-                        assets(first: $first, skip: $skip) {
-                            id
-                            name
-                            owner {
-                                username
-                                walletAddress
-                            }
-                            collection {
-                                name
-                            }
-                            createdAt
+                        owner {
+                            username
+                            walletAddress
                         }
+                        collection {
+                            name
+                        }
+                        createdAt
                     }
                 }
             }
         `;
 
-        // Function to fetch all NFTs for the collection
+        // Function to fetch all NFTs for the collection with pagination
         async function fetchAllCollectionNFTs(collectionId) {
-            const first = 60;
-            let skip = 0;
-            let allAssets = [];
-            let hasMore = true;
+            const first = 60; // Number of NFTs to fetch per request
+            let skip = 0; // Offset for pagination
+            let allAssets = []; // Array to store all fetched NFTs
+            let hasMore = true; // Flag to control pagination loop
             const loadingDiv = document.getElementById('loading');
             const errorDiv = document.getElementById('error');
 
@@ -126,20 +122,25 @@
                         })
                     });
 
+                    // Check for HTTP errors
                     if (!response.ok) {
                         throw new Error(`HTTP Error: ${response.status} - ${response.statusText}`);
                     }
 
                     const result = await response.json();
+
+                    // Check for GraphQL errors
                     if (result.errors) {
                         throw new Error(`GraphQL Error: ${result.errors.map(e => e.message).join(', ')}`);
                     }
 
-                    const assets = result.data?.public?.collection?.assets || [];
+                    // Extract NFTs from the response
+                    const assets = result.data?.public?.collectionNfts || [];
                     allAssets = [...allAssets, ...assets];
                     skip += first;
-                    hasMore = assets.length === first;
+                    hasMore = assets.length === first; // Continue if we fetched the maximum number of items
 
+                    // Update loading message
                     loadingDiv.textContent = `Fetched ${allAssets.length} assets...`;
                 } catch (error) {
                     console.error(`Failed to fetch NFTs: ${error.message}`);
@@ -153,14 +154,17 @@
             return allAssets;
         }
 
-        // Function to display snapshot in table
+        // Function to display the fetched NFTs in a table
         function displaySnapshot(assets) {
             const table = document.getElementById('snapshotTable');
             const tableBody = document.getElementById('snapshotBody');
             const loadingDiv = document.getElementById('loading');
             const downloadCsvButton = document.getElementById('downloadCsvButton');
 
+            // Clear previous table content
             tableBody.innerHTML = '';
+
+            // Populate table with NFT data
             assets.forEach(asset => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
@@ -173,12 +177,13 @@
                 tableBody.appendChild(row);
             });
 
+            // Hide loading message and show the table and download button
             loadingDiv.style.display = 'none';
             table.style.display = 'table';
             downloadCsvButton.style.display = 'block';
         }
 
-        // Function to download snapshot as CSV
+        // Function to download the table data as a CSV file
         function downloadSnapshotAsCsv() {
             const tableBody = document.getElementById('snapshotBody');
             const rows = tableBody.querySelectorAll('tr');
@@ -193,21 +198,33 @@
             ].join('\n');
 
             const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-            saveAs(blob, 'snapshot.csv');
+            saveAs(blob, `collection_${collectionId}_snapshot.csv`);
         }
 
-        // Main function to fetch and display snapshot
+        // Main function to fetch and display the NFT snapshot
         async function createSnapshot() {
             try {
                 const assets = await fetchAllCollectionNFTs(collectionId);
                 console.log(`Total NFTs fetched: ${assets.length}`);
+                
+                // Check if any NFTs were fetched
+                if (assets.length === 0) {
+                    const errorDiv = document.getElementById('error');
+                    const loadingDiv = document.getElementById('loading');
+                    errorDiv.textContent = 'No NFTs found for this collection.';
+                    errorDiv.style.display = 'block';
+                    loadingDiv.style.display = 'none';
+                    return;
+                }
+
                 displaySnapshot(assets);
             } catch (error) {
                 console.error(`Error creating snapshot: ${error.message}`);
+                // Error is already displayed by fetchAllCollectionNFTs
             }
         }
 
-        // Run on page load
+        // Run the snapshot creation on page load
         document.addEventListener('DOMContentLoaded', createSnapshot);
     </script>
 </body>
